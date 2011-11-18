@@ -4,6 +4,7 @@
 !.gitignore
 
 # Ignore Play! working directory #
+modules
 db
 eclipse
 log
