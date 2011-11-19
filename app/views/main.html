@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -24,6 +24,7 @@
 
   <!-- CSS: implied media=all -->
   <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/style.css'}">
+  <link type="text/css" rel="stylesheet" media="only screen and (max-device-width: 480px)"href="iPhone.css">
   #{get 'moreStyles' /}
 
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -35,17 +36,56 @@
 </head>
 
 <body>
-
   <div id="container">
-    <header>
-        <!-- Nav and such go here -->
-    </header>
-    <div id="main" role="main">
-        #{doLayout /}
+    <div id="header">
+        <!-- Marist Logo and General Navigation-->
+	<div id="header-logo">
+	  <p id="logo">Marist<span>.votes</span></p>
+	</div>
+	<div id="navigation">
+	  #{if user}
+	  <li class="border">
+              <a href="#">Welcome <span class="fn">*{***used later ${user?.first_name}</span><span class="ln">${user?.last_name?}***}*</span></a>
+          </li>
+          <li class="border">
+              <a href="#">My Votes</a>
+          </li>
+	  <li>
+              <a href="#">Log Out</a>
+          </li>
+	  #{/if}
+	  #{else}
+	  <li class="border">
+              <a href="#">Log in</a>
+          </li>
+          <li>
+              <a href="#">Register</a>
+          </li>
+	  #{/else}
+	</div>
     </div>
-    <footer>
-        <!-- Footer and such go here -->
-    </footer>
+    <div id="main-container">
+      <div id="user-nav">
+	  <div id="user-nav-list">
+	  <li class="border"><a href="#">Nominate</a></li>
+	  <li class="border"><a href="#">Vote</a></li>
+	  <li><a href="#">Results</a></li>
+	  </div>
+      </div>
+      <div id="main" role="main">
+        #{doLayout /}
+      </div>
+    </div>
+    <div id="footer">
+        <div id="insignia">
+	  <img src="/public/images/marist.jpg" alt="Marist College"/>
+	</div>
+	<div id="footer-info">
+	  <li><a href="#">Marist</a></li>
+	  <li><a href="#">About</a></li>
+	  <li><a href="#">Help</a></li>
+	</div>
+    </div>
   </div> <!--! end of #container -->
 
 
