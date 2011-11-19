@@ -15,18 +15,22 @@
         
         <div id="header">
             <div id="logo">
-                Marist Votes<span>administration</span>
+                Marist Votes<span> .administration</span>
             </div>
-            <ul id="tools">
+            <ul id="navigation">
                 <li>
                     <a href="@{Secure.logout()}">Log out</a>
+                </li>
+                <li>
+                    <a href="@{Application.index()}">Voting System</a>
                 </li>
             </ul>
         </div>
         
-        <div id="main">
-    
+<div id="main">
+    <div id="main-container">
     <ul id="adminMenu">
+        <div id="user-nav-admin">
         <li class="${request.controller == 'Admin' ? 'selected' : ''}">
             <a href="@{Admin.index()}">My Votes and Nominations</a>
         </li>
@@ -55,10 +59,11 @@
             <li class="${request.controller == 'Elected' ? 'selected' : ''}">
                 <a href="@{Electeds.list()}">Elected</a>
             </li>
+        </div>
          #{/secure.check} 
-    </ul>
-    
-    #{doLayout /} 
+        </ul>
+    #{doLayout /}
+    </div>
 </div>
         
         <div id="footer">

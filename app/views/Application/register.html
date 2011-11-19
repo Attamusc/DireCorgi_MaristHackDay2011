@@ -24,7 +24,7 @@
         #{field 'first_name'}
         <label>First Name:</label>
         <input type="text" name="${field.name}" 
-            value="${user?.last_name}" class="${field.errorClass}" />
+            value="${user?.first_name}" class="${field.errorClass}" />
         #{/field}
     </p>
     <p>
@@ -50,14 +50,14 @@
     </p>
     <p>
         #{field 'tenured'}
-        <label>tenured:</label>
+        <label>Tenured?:</label>
         <input type="radio" name="${field.name}" 
             value="${user?.tenured}" class="${field.errorClass}" />
         #{/field}
     </p>
     <p>
         #{field 'vested'}
-        <label>tenured:</label>
+        <label>Vested?:</label>
         <input type="radio" name="${field.name}" 
             value="${user?.vested}" class="${field.errorClass}" />
         #{/field}

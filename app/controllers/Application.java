@@ -5,7 +5,8 @@ import play.mvc.*;
 
 import java.util.*;
 
-import models.*;
+import models.User;
+import models.School;
 
 public class Application extends Controller {
 
@@ -17,10 +18,11 @@ public class Application extends Controller {
         render();
     }
     
-    public static void signup(String first_name, String last_name, String email, String password, School school, String cwid, boolean vested, boolean tenured) {
-        User newUser = new User(first_name, last_name, email, password, school, cwid, vested, tenured);
+    public static void signup(String first_name, String last_name, String email, String password, String school, String cwid, boolean vested, boolean tenured) {
+        School newSchool = new School(school).save();
+        User newUser = new User(first_name, last_name, email, password, newSchool, cwid, vested, tenured).save();
         
-        if(user.save()) {
+        if(newUser != null) {
             redirect("/admin");
         }
         else {

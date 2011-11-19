@@ -43,15 +43,15 @@
 	  <p id="logo">Marist<span>.votes</span></p>
 	</div>
 	<div id="navigation">
-	  #{if user}
+	  #{if session.username}
 	  <li class="border">
-              <a href="#">Welcome <span class="fn">*{***used later ${user?.first_name}</span><span class="ln">${user?.last_name?}***}*</span></a>
+              <a href="@{Admin.index()}">Welcome <span class="sun">${session.username}</span></a>
           </li>
           <li class="border">
               <a href="#">My Votes</a>
           </li>
 	  <li>
-              <a href="#">Log Out</a>
+              <a href="@{Secure.logout()}">Log Out</a>
           </li>
 	  #{/if}
 	  #{else}
@@ -59,7 +59,7 @@
               <a href="@{Admin.index()}">Log in</a>
           </li>
           <li>
-              <a href="#">Register</a>
+              <a href="@{Application.register()}">Register</a>
           </li>
 	  #{/else}
 	</div>
@@ -67,9 +67,14 @@
     <div id="main-container">
       <div id="user-nav">
 	  <div id="user-nav-list">
+	  #{if user}
 	  <li class="border"><a href="#">Nominate</a></li>
 	  <li class="border"><a href="#">Vote</a></li>
 	  <li><a href="#">Results</a></li>
+	   #{/if}
+	   #{else}
+	   <div> Please Log into the Voting System </div>
+	   #{/else}
 	  </div>
       </div>
       <div id="main" role="main">
