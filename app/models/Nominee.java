@@ -9,13 +9,11 @@ import java.util.*;
 @Entity
 public class Nominee extends Model {
     
+    @ManyToOne
     public User user;
-    public Vacancy vacancy;
     
-    public Nominee(User user, Vacancy vacancy) {
-        this.user = user;
-        this.vacancy = vacancy;
-    }
+    @ManyToOne
+    public Vacancy vacancy;
     
 }
 

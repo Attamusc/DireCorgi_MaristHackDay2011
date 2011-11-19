@@ -27,9 +27,5 @@ public class Vote extends Model {
         this.date_submitted = new Date();
     }
     
-    public static int votesForNominee(Nominee nominee) {
-        return Vote.find('nominee', nominee).count();
-    }
-    
 }
 

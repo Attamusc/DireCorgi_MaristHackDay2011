@@ -9,12 +9,15 @@ import java.util.*;
 @Entity
 public class Elected extends Model {
     
+    @ManyToOne
     public User user;
+    
+    @ManyToOne
     public Commitee commitee;
     
     public Elected(User user, Commitee commitee) {
-        this.user;
-        this.commitee;
+        this.user = user;
+        this.commitee = commitee;
     }
     
 }

@@ -69,15 +69,15 @@ public class User extends Model {
         return null;
     }
     
-    public User addVote(Nomination nominee) {
+    public User addVote(Nominee nominee) {
         Vote newVote = new Vote(this.email, nominee).save();
         this.votes.add(newVote);
         this.save();
         return this;
     }
     
-    public User addNomination(User user) {
-        Vote newNomination = new Nomination(this.email, user).save();
+    public User addNomination(User user, Vacancy vacancy) {
+        Nomination newNomination = new Nomination(this.email, user, vacancy).save();
         this.nominations.add(newNomination);
         this.save();
         return this;

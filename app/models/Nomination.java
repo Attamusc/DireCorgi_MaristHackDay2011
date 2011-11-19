@@ -20,13 +20,9 @@ public class Nomination extends Model {
     public Vacancy vacancy;
     
     public Nomination(String email, User user, Vacancy vacancy) {
-        this.voter = Crypto.passwordHash(this.email);
+        this.voter = Crypto.passwordHash(email);
         this.user = user;
         this.vacancy = vacancy;
-    }
-    
-    public static int nominationsForUser(User user) {
-        return Nomination.find('user', user).count();
     }
 }
 
