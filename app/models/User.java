@@ -31,6 +31,9 @@ public class User extends Model {
     
     public boolean nominated;
     
+    @OneToMany(mappedBy="user", cascade=CascadeType.ALL)
+    public List<Vote> votes;
+    
     // The faculty's campus wide id
     @Required
     public String cwid;
@@ -45,6 +48,7 @@ public class User extends Model {
         this.school = school;
         this.nominated = false;
         this.cwid = cwid;
+        this.votes = new ArrayList<Vote>();
     }
     
     
@@ -57,6 +61,17 @@ public class User extends Model {
         }
         
         return null;
+    }
+    
+    public User addVote(User user, VotingSession voting_session) {
+        Vote newVote = new Vote(this.email, user, voting_session).save();
+        this.votes.add(newVote);
+        this.save();
+        return this;
+    }
+    
+    public static List<User> findInSchool(String school_name) {
+        return User.find("select distinct u from User u join School as s where s.name = ?", school_name).fetch();
     }
 }
 
