@@ -17,5 +17,9 @@ public class Commitee extends Model {
         this.tenureRequired = tenureRequired;
     }
     
+    public String toString() {
+        return this.name;
+    }
+    
 }
 

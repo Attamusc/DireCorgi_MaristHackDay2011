@@ -24,12 +24,17 @@ public class User extends Model {
     public String password_hash;
     public String salt;
     
+    @Required
     public boolean is_admin;
     
     @ManyToOne
+    @Required
     public School school;
     
+    @Required
     public boolean vested;
+    
+    @Required
     public boolean tenured;
     
     @OneToMany(cascade=CascadeType.ALL)
@@ -81,6 +86,10 @@ public class User extends Model {
         this.nominations.add(newNomination);
         this.save();
         return this;
+    }
+    
+    public String toString() {
+        return this.first_name + " " + this.last_name;
     }
 }
 

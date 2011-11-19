@@ -25,5 +25,9 @@ public class Vacancy extends Model {
         this.election_start = election_start;
     }
     
+    public String toString() {
+        return this.commitee.toString() + " - " + this.commitee.toString();
+    }
+    
 }
 

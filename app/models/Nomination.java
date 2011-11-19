@@ -24,5 +24,9 @@ public class Nomination extends Model {
         this.user = user;
         this.vacancy = vacancy;
     }
+    
+    public String toString() {
+        return this.user.toString() + " @ " + this.date_submitted.toString();
+    }
 }
 
