@@ -29,12 +29,14 @@ public class User extends Model {
     @ManyToOne
     public School school;
     
-    public boolean nominated;
     public boolean vested;
     public boolean tenured;
     
-    @OneToMany(mappedBy="user", cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL)
     public List<Vote> votes;
+    
+    @OneToMany(cascade=CascadeType.ALL)
+    public List<Nomination> nominations;
     
     // The faculty's campus wide id
     @Required
@@ -52,6 +54,7 @@ public class User extends Model {
         this.tenured = tenured;
         this.cwid = cwid;
         this.votes = new ArrayList<Vote>();
+        this.nominations = new ArrayList<Nomination>();
     }
     
     
@@ -66,9 +69,16 @@ public class User extends Model {
         return null;
     }
     
-    public User addVote(User user, VotingSession voting_session) {
-        Vote newVote = new Vote(this.email, user, voting_session).save();
+    public User addVote(Nomination nominee) {
+        Vote newVote = new Vote(this.email, nominee).save();
         this.votes.add(newVote);
+        this.save();
+        return this;
+    }
+    
+    public User addNomination(User user) {
+        Vote newNomination = new Nomination(this.email, user).save();
+        this.nominations.add(newNomination);
         this.save();
         return this;
     }

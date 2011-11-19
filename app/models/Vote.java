@@ -12,26 +12,24 @@ import java.util.*;
 public class Vote extends Model {
     
     @Required
-    public String voter;
+    @ManyToOne
+    public Nominee nominee;
     
     @Required
-    @ManyToOne
-    public User user;
+    public String voter;
     
     @Required
     public Date date_submitted;
     
-    @Required
-    @ManyToOne
-    public VotingSession voting_session;
-    
-    public Vote(String email, User user, VotingSession voting_session) {
+    public Vote(String email, Nominee nominee) {
         this.voter = Crypto.passwordHash(email);
-        this.user = user;
+        this.nominee = nominee;
         this.date_submitted = new Date();
-        this.voting_session = voting_session;
     }
     
+    public static int votesForNominee(Nominee nominee) {
+        return Vote.find('nominee', nominee).count();
+    }
     
 }
 
