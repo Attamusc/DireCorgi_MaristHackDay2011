@@ -15,5 +15,14 @@ public class Nominee extends Model {
     @ManyToOne
     public Vacancy vacancy;
     
+    public Nominee(User user, Vacancy vacancy) {
+        this.user = user;
+        this.vacancy = vacancy;
+    }
+    
+    public String toString() {
+        return this.user.toString();
+    }
+    
 }
 

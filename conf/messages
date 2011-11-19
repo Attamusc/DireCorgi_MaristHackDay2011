@@ -1,3 +1,16 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+name=Name
+tenureRequired=Is Tenure Required?
+user=User
+commitee=Committee
+vacancy=Vacancy
+first_name=First Name
+last_name=Last Name
+email=Email
+school=School
+vested=Is Vested?
+tenured=Is Tenured?
+cwid=CWID
+is_admin=Is an Administrator?

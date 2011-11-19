@@ -20,5 +20,9 @@ public class Elected extends Model {
         this.commitee = commitee;
     }
     
+    public String toString() {
+        return this.user.toString();
+    }
+    
 }
 

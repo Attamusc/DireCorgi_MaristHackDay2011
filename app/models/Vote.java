@@ -27,5 +27,9 @@ public class Vote extends Model {
         this.date_submitted = new Date();
     }
     
+    public String toString() {
+        return this.nominee.toString() + " @ " + this.date_submitted.toString();
+    }
+    
 }
 

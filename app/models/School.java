@@ -16,5 +16,9 @@ public class School extends Model {
     public School(String name) {
         this.name = name;
     }
+    
+    public String toString() {
+        return this.name;
+    }
 }
 
