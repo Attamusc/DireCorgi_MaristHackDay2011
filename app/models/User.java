@@ -30,6 +30,8 @@ public class User extends Model {
     public School school;
     
     public boolean nominated;
+    public boolean vested;
+    public boolean tenured;
     
     @OneToMany(mappedBy="user", cascade=CascadeType.ALL)
     public List<Vote> votes;
@@ -38,7 +40,7 @@ public class User extends Model {
     @Required
     public String cwid;
     
-    public User(String first_name, String last_name, String email, String password, School school, String cwid) {
+    public User(String first_name, String last_name, String email, String password, School school, String cwid, boolean vested, boolean tenured) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
@@ -46,7 +48,8 @@ public class User extends Model {
         this.password_hash = Crypto.passwordHash(Crypto.passwordHash(password) + this.salt);
         this.is_admin = false;
         this.school = school;
-        this.nominated = false;
+        this.vested = vested;
+        this.tenured = tenured;
         this.cwid = cwid;
         this.votes = new ArrayList<Vote>();
     }
@@ -68,10 +71,6 @@ public class User extends Model {
         this.votes.add(newVote);
         this.save();
         return this;
-    }
-    
-    public static List<User> findInSchool(String school_name) {
-        return User.find("select distinct u from User u join School as s where s.name = ?", school_name).fetch();
     }
 }
 

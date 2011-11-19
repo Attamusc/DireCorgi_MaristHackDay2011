@@ -15,14 +15,14 @@ public class UserTest extends UnitTest {
     @Test
     public void createUserTest() {
         School tempSchool = new School("Computer Science").save();
-        new User("Sean", "Dunn", "sean@attamusc.com", "password", tempSchool, "101-10-951").save();
+        new User("Sean", "Dunn", "sean@attamusc.com", "password", tempSchool, "101-10-951", "true", "false").save();
         assertEquals(1, User.count());
     }
     
     @Test
     public void schoolConnectionTest() {
         School tempSchool = new School("Computer Science").save();
-        new User("Sean", "Dunn", "sean@attamusc.com", "password", tempSchool, "101-10-951").save();
+        new User("Sean", "Dunn", "sean@attamusc.com", "password", tempSchool, "101-10-951", "true", "false").save();
         User sean = User.find("byEmail", "sean@attamusc.com").first();
         assertEquals(tempSchool, sean.school);
         assertEquals("Computer Science", sean.school.name);
@@ -31,8 +31,8 @@ public class UserTest extends UnitTest {
     @Test
     public void addVoteTest() {
         School tempSchool = new School("Computer Science").save();
-        User sean = new User("Sean", "Dunn", "sean@attamusc.com", "password", tempSchool, "101-10-951").save();
-        User ryan = new User("Ryan", "Wallner", "ryan@attamusc.com", "password", tempSchool, "101-10-950").save();
+        User sean = new User("Sean", "Dunn", "sean@attamusc.com", "password", tempSchool, "101-10-951", "true", "false").save();
+        User ryan = new User("Ryan", "Wallner", "ryan@attamusc.com", "password", tempSchool, "101-10-950", "true", "false").save();
         VotingSession spring_2012 = new VotingSession("Spring 2012", new Date(), new Date()).save();
         
         sean.addVote(ryan, spring_2012);
@@ -42,13 +42,17 @@ public class UserTest extends UnitTest {
     
     @Test
     public void findInSchoolTest() {
+        School tempSchool = new School("Computer Science").save();
+        User sean = new User("Sean", "Dunn", "sean@attamusc.com", "password", tempSchool, "101-10-951", "true", "false").save();
+        User ryan = new User("Ryan", "Wallner", "ryan@attamusc.com", "password", tempSchool, "101-10-950", "true", "false").save();
         
+        assertEquals(ryan, User.findInSchool("Computer Science").get(1));
     }
     
     @Test
     public void connectUser() {
         School tempSchool = new School("Computer Science").save();
-        User sean = new User("Sean", "Dunn", "sean@attamusc.com", "password", tempSchool, "101-10-951").save();
+        User sean = new User("Sean", "Dunn", "sean@attamusc.com", "password", tempSchool, "101-10-951", "true", "false").save();
         assertEquals(sean, User.connect("sean@attamusc.com", "password"));
         assertEquals(null, User.connect("sean@fakeemail.com", "password"));
         assertEquals(null, User.connect("sean@attamusc.com", "foo"));
