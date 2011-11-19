@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Administration</title>		
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        #{get 'moreStyles' /}	
+        <link rel="stylesheet" type="text/css" media="screen" 
+                href="@{'/public/stylesheets/style.css'}" />
+        <link rel="shortcut icon" type="image/png" 
+                href="@{'/public/images/favicon.png'}" />
+        <script src="@{'/public/javascripts/jquery-1.6.2.min.js'}"></script>
+    </head>
+    <body id="admin">
+        
+        <div id="header">
+            <div id="logo">
+                Marist Votes<span>administration</span>
+            </div>
+            <ul id="tools">
+                <li>
+                    <a href="@{Secure.logout()}">Log out</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="main">
+    
+    <ul id="adminMenu">
+        <li class="${request.controller == 'Admin' ? 'selected' : ''}">
+            <a href="@{Admin.index()}">My Votes and Nominations</a>
+        </li>
+        #{secure.check 'true'} 
+            <li class="${request.controller == 'Votes' ? 'selected' : ''}">
+            <a href="@{Admin.index()}">My Votes</a>
+            </li>
+            <li class="${request.controller == 'Nominations' ? 'selected' : ''}">
+                <a href="@{Nominations.list()}">My Nomination</a>
+            </li>
+            <li class="${request.controller == 'Nominees' ? 'selected' : ''}">
+                <a href="@{Nominees.list()}">Nominees</a>
+            </li>
+            <li class="${request.controller == '' ? 'Schools' : ''}">
+                <a href="@{Schools.list()}">Schools</a>
+            </li>
+            <li class="${request.controller == 'Commitees' ? 'selected' : ''}">
+                <a href="@{Commitees.list()}">Commitees</a>
+            </li>
+            <li class="${request.controller == 'Users' ? 'selected' : ''}">
+                <a href="@{Users.list()}">Users</a>
+            </li>
+            <li class="${request.controller == 'Vacancies' ? 'selected' : ''}">
+                <a href="@{Vacancys.list()}">Vacancy</a>
+            </li>
+            <li class="${request.controller == 'Elected' ? 'selected' : ''}">
+                <a href="@{Electeds.list()}">Elected</a>
+            </li>
+         #{/secure.check} 
+    </ul>
+    
+    #{doLayout /} 
+</div>
+        
+        <div id="footer">
+        <div id="insignia">
+	  <img src="/public/images/marist.jpg" alt="Marist College"/>
+	</div>
+	<div id="footer-info">
+	  <li><a href="#">Marist</a></li>
+	  <li><a href="#">About</a></li>
+	  <li><a href="#">Help</a></li>
+	</div>
+        </div>
+        
+    </body>
+</html>

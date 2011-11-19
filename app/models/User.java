@@ -59,7 +59,7 @@ public class User extends Model {
     
     
     public static User connect(String email, String password) {
-        User user = User.find("byEmail", email).first();
+        User user = User.find("byEmailAndPassword", email ,password).first();
         
         if(user != null) {
             String auth_hash = Crypto.passwordHash(Crypto.passwordHash(password) + user.salt);

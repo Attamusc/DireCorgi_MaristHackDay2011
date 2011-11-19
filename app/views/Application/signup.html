@@ -1,0 +1,62 @@
+#{extends 'main.html' /}
+#{set title:'Register' /}
+
+
+#{form @signup()}
+ 
+    #{ifErrors}
+        <p class="error">
+            All fields are required!
+        </p>
+        <p class="error">
+        	${errors[0]}
+    	</p>
+    #{/ifErrors}
+     
+    <p>
+        #{field 'email'}
+        <label>Email:</label>
+        <input type="text" name="${field.name}" 
+            value="${user?.email}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+    <p>
+        #{field 'first_name'}
+        <label>First Name:</label>
+        <input type="text" name="${field.name}" 
+            value="${user?.last_name}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+    <p>
+        #{field 'last_name'}
+        <label>Last Name:</label>
+        <input type="text" name="${field.name}" 
+            value="${user?.last_name}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+    <p>
+        #{field 'school'}
+        <label>School Of:</label>
+        <input type="text" name="${field.name}" 
+            value="${user?.school}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+    <p>
+        #{field 'cwid'}
+        <label>College Wide ID:</label>
+        <input type="text" name="${field.name}" 
+            value="${user?.cwid}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+    <p>
+        #{field 'password'}
+        <label>Password:</label>
+        <input type="text" name="${field.name}" 
+            value="${user?.password}" class="${field.errorClass}" />
+        #{/field}
+    </p>
+    <p>
+        <input type="submit" value="Register" />
+    </p>
+    
+#{/form}

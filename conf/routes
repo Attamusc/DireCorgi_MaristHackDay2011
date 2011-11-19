@@ -3,10 +3,16 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+GET     /                                         Application.index
+
+GET     /admin                                    Admin.index
+
+GET     /register                                 Application.register
+
+POST    /signup                                   Application.signup
 
 # CRUD Admin
-*       /admin                                module:crud
+*       /admin                                  module:crud
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
